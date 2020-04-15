@@ -49,8 +49,7 @@ def save_train(train_images_names, out_path='../dataset128',
                img_size=128, n_train=-1, n_threads=1):
     if os.path.isdir(out_path):
         shutil.rmtree(out_path)
-    os.makedirs(out_path + '/train', exist_ok=True)
-    os.makedirs(out_path + '/mask', exist_ok=True)
+    os.makedirs(out_path + '/train_png', exist_ok=True)
     if n_train < 0:
         n_train = len(train_images_names)
     try:
@@ -61,7 +60,7 @@ def save_train(train_images_names, out_path='../dataset128',
 
 
 def save_test(test_images_names, out_path='../dataset128', img_size=128, n_threads=1):
-    os.makedirs(out_path + '/test', exist_ok=True)
+    os.makedirs(out_path + '/test_png', exist_ok=True)
     try:
         Parallel(n_jobs=n_threads, backend='threading')(delayed(save_test_file)(
             f, out_path, img_size) for f in tqdm(test_images_names))

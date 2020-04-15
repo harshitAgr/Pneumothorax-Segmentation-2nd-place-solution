@@ -1,6 +1,6 @@
 addict==2.2.1
 albumentations==0.3.0
-apex==0.1
+#apex==0.1
 certifi==2019.3.9
 chardet==3.0.4
 cycler==0.10.0
@@ -57,3 +57,4 @@ tqdm==4.32.1
 urllib3==1.25.3
 visdom==0.1.8.8
 websocket-client==0.56.0
+pydicom

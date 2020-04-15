@@ -7,7 +7,7 @@ import cv2
 import csv
 import random
 from sklearn.metrics.ranking import roc_auc_score
-os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 #============ PyTorch imports ============#
 import torch
 import torch.nn as nn
