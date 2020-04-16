@@ -106,6 +106,7 @@ def train_one_model(model_name, image_size):
             writer.writerow(header)
             writer.writerow(hheader)
     df_all = pd.read_csv(csv_path)
+    df_all = df_all.rename(columns={' EncodedPixels': 'EncodedPixels'})
     kfold_path = path_data['k_fold_path_cls']
 
     for num_fold in range(5):
