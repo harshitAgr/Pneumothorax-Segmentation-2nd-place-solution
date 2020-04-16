@@ -34,7 +34,7 @@ def save_train_file(f, out_path, img_size):
     img = pydicom.read_file(f).pixel_array
     name = f.split('/')[-1][:-4]
     img = resize(img, (img_size, img_size))
-    cv2.imwrite('{}/train/{}.png'.format(out_path, name), img * 255)
+    cv2.imwrite('{}/train_png/{}.png'.format(out_path, name), img * 255)
 
 
 
@@ -42,7 +42,7 @@ def save_test_file(f, out_path, img_size):
     img = pydicom.read_file(f).pixel_array
     name = f.split('/')[-1][:-4]
     img = resize(img, (img_size, img_size)) * 255
-    cv2.imwrite('{}/test/{}.png'.format(out_path, name), img)
+    cv2.imwrite('{}/test_png/{}.png'.format(out_path, name), img)
 
 
 def save_train(train_images_names, out_path='../dataset128',
