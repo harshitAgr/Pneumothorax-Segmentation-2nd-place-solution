@@ -15,7 +15,7 @@ from torch.utils.data.dataloader import default_collate
 fpath = open('../configs/seg_path_configs.json', encoding='utf-8')
 path_data = json.load(fpath)
 train_img_path = path_data['train_img_path'] + '/'
-
+size = 512
 def generate_transforms(image_size):
     # MAX_SIZE = 448
     IMAGENET_SIZE = image_size
@@ -83,9 +83,9 @@ class Siim_Dataset(data.Dataset):
         image = cv2.imread(train_img_path + name)
         rle = self.df[self.df['ImageId']==(name.replace('.png', '').replace('.jpg', ''))]['EncodedPixels']
         if rle.values[0] == ' -1':
-            masks = np.zeros((1024, 1024))
+            masks = np.zeros((size, size))
         else:
-            masks = [np.expand_dims(rle2mask(x, 1024, 1024).T,axis=0) for x in rle]
+            masks = [np.expand_dims(rle2mask(x, size, size).T,axis=0) for x in rle]
             masks = np.sum(masks,0)
             masks[masks>1] = 1
             masks = masks[0, :, :]
@@ -119,15 +119,15 @@ class Siim_Dataset_cls_seg_train(data.Dataset):
         rle = self.df[self.df['ImageId']==(name.replace('.png', '').replace('.jpg', ''))]['EncodedPixels']
 
         if rle.values[0] == '-1':
-            masks = np.zeros((1024, 1024))
+            masks = np.zeros((size, size))
             cls_label = torch.FloatTensor([0])
         
         elif rle.values[0] == '2':
-            masks = np.zeros((1024, 1024))
+            masks = np.zeros((size, size))
             cls_label = torch.FloatTensor([1])            
         else:
 
-            masks = [np.expand_dims(rle2mask(x, 1024, 1024).T,axis=0) for x in rle]
+            masks = [np.expand_dims(rle2mask(x, size, size).T,axis=0) for x in rle]
             masks = np.sum(masks,0)
             masks[masks>1] = 1
             masks = masks[0, :, :]
@@ -164,13 +164,13 @@ class Siim_Dataset_cls_seg_val(data.Dataset):
         rle = self.df[self.df['ImageId']==(name.replace('.png', '').replace('.jpg', ''))]['EncodedPixels']
 
         if rle.values[0] == '-1':
-            masks = np.zeros((1024, 1024))
+            masks = np.zeros((size, size)
             cls_label = torch.FloatTensor([0])
         elif rle.values[0] == '2':
-            masks = np.zeros((1024, 1024))
+            masks = np.zeros((size, size))
             cls_label = torch.FloatTensor([1])            
         else:
-            masks = [np.expand_dims(rle2mask(x, 1024, 1024).T,axis=0) for x in rle]
+            masks = [np.expand_dims(rle2mask(x, size, size).T,axis=0) for x in rle]
             masks = np.sum(masks,0)
             masks[masks>1] = 1
             masks = masks[0, :, :]
