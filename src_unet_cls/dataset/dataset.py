@@ -14,7 +14,7 @@ from torch.utils.data.dataloader import default_collate
 
 fpath = open('../configs/seg_path_configs.json', encoding='utf-8')
 path_data = json.load(fpath)
-train_img_path = path_data['train_img_path']
+train_img_path = path_data['train_img_path'] + '/'
 
 def generate_transforms(image_size):
     # MAX_SIZE = 448
