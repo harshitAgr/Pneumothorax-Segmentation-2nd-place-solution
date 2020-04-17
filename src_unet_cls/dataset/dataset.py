@@ -164,7 +164,7 @@ class Siim_Dataset_cls_seg_val(data.Dataset):
         rle = self.df[self.df['ImageId']==(name.replace('.png', '').replace('.jpg', ''))]['EncodedPixels']
 
         if rle.values[0] == '-1':
-            masks = np.zeros((size, size)
+            masks = np.zeros((size, size))
             cls_label = torch.FloatTensor([0])
         elif rle.values[0] == '2':
             masks = np.zeros((size, size))
