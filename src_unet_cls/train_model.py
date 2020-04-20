@@ -17,16 +17,16 @@ import torch.optim
 from torch.optim.lr_scheduler import ReduceLROnPlateau,MultiStepLR
 import torch.utils.data
 
-import torch.utils.data as data
+#import torch.utils.data as data
 from models.model_unet import *
 from dataset.dataset import *
 from tuils.tools import *
 from tuils.lrs_scheduler import WarmRestart, warm_restart, AdamW, RAdam
 from tuils.loss_function import *
-import torch.nn.functional as F
-from collections import OrderedDict
+#import torch.nn.functional as F
+#from collections import OrderedDict
 import warnings
-import segmentation_models_pytorch as smp
+#import segmentation_models_pytorch as smp
 warnings.filterwarnings('ignore')
 torch.manual_seed(1992)
 torch.cuda.manual_seed(1992)
